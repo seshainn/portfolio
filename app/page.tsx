@@ -1,113 +1,275 @@
-import Image from "next/image";
+'use client'
+import React, { useState } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import Tabs from './_components/Tabs'
 
-export default function Home() {
+const Home = () => {
+  const [toggleHam, setToggleHam] = useState(false)
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className='flex flex-col min-h-screen bg-white overflow-x-hidden'>
+      <nav>
+        <div className='flex flex-row justify-between py-4 px-20 fixed w-full bg-blue-300 items-center z-20'>
+          <div className='flex flex-row justify-between space-x-1'>
+            <h1 className='font-bold text-2xl'>My Portfolio</h1>
+          </div>
+          <div className='flex flex-row text-md text-gray-800 tracking-wider space-x-8 uppercase max-md:hidden'>
+            <Link href='#about' className='py-2 hover:text-gray-300'>
+              About
+            </Link>
+            <Link href='#projects' className='py-2 hover:text-gray-300'>
+              Projects
+            </Link>
+            <Link href='#techstack' className='py-2 hover:text-gray-300'>
+              Tech Stack
+            </Link>
+            <button
+              type='button'
+              className='border-2 hover:bg-blue-500 border-softRed px-5 rounded-lg uppercase text-sm py-2 tracking-wider'
+            >
+              Contact
+            </button>
+          </div>
+          <div className='md:hidden'>
+            {/* hamburger menu on screens below md */}
+            <button
+              type='button'
+              id='hamburger'
+              className='w-[24px] h-[24px] relative z-40'
+              onClick={(e) => {
+                e.currentTarget.classList.toggle('open-ham')
+                setToggleHam(!toggleHam)
+              }}
+            >
+              <span className='hamburger-top bg-black'></span>
+              <span className='hamburger-middle bg-black translate-y-[7px]'></span>
+              <span className='hamburger-bottom bg-black translate-y-[14px]'></span>
+            </button>
+          </div>
         </div>
-      </div>
+        {toggleHam && (
+          <div className='fixed left-0 top-0 bottom-0 flex flex-col w-full min-h-screen self-end py-40 pl-12 space-y-5 text-lg text-white font-alata uppercase bg-black opacity-70 md:hidden'>
+            <Link
+              href='#about'
+              className='hover:text-gray-500'
+              onClick={() => {
+                const hambutton = document.querySelector('#hamburger')
+                if (hambutton) {
+                  hambutton.classList.toggle('open-ham')
+                  setToggleHam(!toggleHam)
+                }
+              }}
+            >
+              About
+            </Link>
+            <Link
+              href='#projects'
+              className='hover:text-gray-500'
+              onClick={() => {
+                const hambutton = document.querySelector('#hamburger')
+                if (hambutton) {
+                  hambutton.classList.toggle('open-ham')
+                  setToggleHam(!toggleHam)
+                }
+              }}
+            >
+              Projects
+            </Link>
+            <Link
+              href='#techstack'
+              className='hover:text-gray-500'
+              onClick={() => {
+                const hambutton = document.querySelector('#hamburger')
+                if (hambutton) {
+                  hambutton.classList.toggle('open-ham')
+                  setToggleHam(!toggleHam)
+                }
+              }}
+            >
+              Tech Stack
+            </Link>
+            <Link
+              href='#'
+              className='hover:text-gray-500'
+              onClick={() => {
+                const hambutton = document.querySelector('#hamburger')
+                if (hambutton) {
+                  hambutton.classList.toggle('open-ham')
+                  setToggleHam(!toggleHam)
+                }
+              }}
+            >
+              Contact
+            </Link>
+          </div>
+        )}
+      </nav>
+      <section id='about'>
+        <div className='container flex flex-col-reverse lg:flex-row mx-auto p-6 lg:mb-0'>
+          <div className='flex flex-col mt-40 lg:w-1/2'>
+            <h1 className='font-semibold font-sans text-3xl text-black text-center lg:text-4xl'>
+              Seshagiri Innamuri
+            </h1>
+            <p className='max-w-md mx-auto text-lg text-center text-gray-400 lg:text-2xl '>
+              Full stack web developer
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
+      <section id='projects'>
+        <div className='container mx-auto'>
+          <h2 className='text-4xl mt-20 p-6 font-semibold text-center'>
+            Projects
           </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+          <Tabs />
+        </div>
+      </section>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
+      <section id='techstack'>
+        <div className='container mx-auto'>
+          <h2 className='mt-20 text-3xl font-semibold text-center md:text-4xl'>
+            Tech Stack
           </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
+          <p className='max-w-lg px-6 mx-auto text-center text-graishBlue'>
+            What I know
           </p>
-        </a>
+        </div>
+        <div className='container mx-auto px-20 mb-32'>
+          <div className='max-w-2xl m-8 mx-auto overflow-hidden'>
+            <div className='py-1 border-b outline-none group' tabIndex={1}>
+              <div className='flex items-center justify-between py-3 text-gray-500 transition duration-500 cursor-pointer group ease'>
+                <div className='transition duration-500 ease group-hover:text-red-500'>
+                  What is Bookmark?
+                </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+                <div className='transition duration-500 ease group-focus:-rotate-180 group-focus:text-red-500'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='18'
+                    height='12'
+                  >
+                    <path
+                      fill='none'
+                      stroke='currentColor'
+                      strokeWidth='3'
+                      d='M1 1l8 8 8-8'
+                    />
+                  </svg>
+                </div>
+              </div>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+              <div className='overflow-hidden transition duration-500 group-focus:max-h-screen max-h-0 ease'>
+                <p className='py-2 text-justify text-gray-900'>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Fugiat, repellat amet doloribus consequuntur eos similique
+                  provident tempora voluptates iure quia fuga dicta voluptatibus
+                  culpa mollitia recusandae delectus id suscipit labore?
+                </p>
+              </div>
+            </div>
+
+            <div className='py-1 border-b outline-none group' tabIndex={2}>
+              <div className='flex items-center justify-between py-3 text-gray-500 transition duration-500 cursor-pointer group ease'>
+                <div className='transition duration-500 ease group-hover:text-red-500'>
+                  How can I request a new browser?
+                </div>
+
+                <div className='transition duration-500 ease group-focus:-rotate-180 group-focus:text-red-500'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='18'
+                    height='12'
+                  >
+                    <path
+                      fill='none'
+                      stroke='currentColor'
+                      strokeWidth='3'
+                      d='M1 1l8 8 8-8'
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <div className='overflow-hidden transition duration-500 group-focus:max-h-screen max-h-0 ease'>
+                <p className='py-2 text-justify text-gray-400'>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Fugiat, repellat amet doloribus consequuntur eos similique
+                  provident tempora voluptates iure quia fuga dicta voluptatibus
+                  culpa mollitia recusandae delectus id suscipit labore?
+                </p>
+              </div>
+            </div>
+
+            <div className='py-1 border-b outline-none group' tabIndex={3}>
+              <div className='flex items-center justify-between py-3 text-gray-500 transition duration-500 cursor-pointer group ease'>
+                <div className='transition duration-500 ease group-hover:text-red-500'>
+                  Is ther a mobile app?
+                </div>
+
+                <div className='transition duration-500 ease group-focus:-rotate-180 group-focus:text-red-500'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='18'
+                    height='12'
+                  >
+                    <path
+                      fill='none'
+                      stroke='currentColor'
+                      strokeWidth='3'
+                      d='M1 1l8 8 8-8'
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <div className='overflow-hidden transition duration-500 group-focus:max-h-screen max-h-0 ease'>
+                <p className='py-2 text-justify text-gray-400'>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Fugiat, repellat amet doloribus consequuntur eos similique
+                  provident tempora voluptates iure quia fuga dicta voluptatibus
+                  culpa mollitia recusandae delectus id suscipit labore?
+                </p>
+              </div>
+            </div>
+
+            <div className='py-1 border-b outline-none group' tabIndex={4}>
+              <div className='flex items-center justify-between py-3 text-gray-500 transition duration-500 cursor-pointer group ease'>
+                <div className='transition duration-500 ease group-hover:text-red-500'>
+                  What about other Chromium browsers
+                </div>
+
+                <div className='transition duration-500 ease group-focus:-rotate-180 group-focus:text-red-500'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='18'
+                    height='12'
+                  >
+                    <path
+                      fill='none'
+                      stroke='currentColor'
+                      strokeWidth='3'
+                      d='M1 1l8 8 8-8'
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              {/* -- Tab Inner Content -- */}
+              <div className='overflow-hidden transition duration-500 group-focus:max-h-screen max-h-0 ease'>
+                <p className='py-2 text-justify text-gray-400'>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Fugiat, repellat amet doloribus consequuntur eos similique
+                  provident tempora voluptates iure quia fuga dicta voluptatibus
+                  culpa mollitia recusandae delectus id suscipit labore?
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
 }
+
+export default Home
